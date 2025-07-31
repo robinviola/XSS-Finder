@@ -1,14 +1,14 @@
 // ==UserScript==
-// @name         Cyber HUD Widget (Noir & Blanc Minimal Optimisé V3)
+// @name         Cyber HUD Widget (Black & White Minimal Optimized V3)
 // @namespace    https://github.com/votre-projet
 // @version      1.4.0
-// @description  Widget sécurité minimaliste, ultra-fiable, pages web, optimisé, filtrage des requêtes normales et domaines connus
+// @description  Minimalist, ultra-reliable security widget for web pages – optimized to filter known domains and standard requests.
 // @author       robinviola
 // @match        *://*/*
 // @grant        none
 // ==/UserScript==
 
-(function() {
+(function () {
     'use strict';
 
     // ======= CONFIGURATION =======
@@ -17,12 +17,10 @@
         'cdnjs.cloudflare.com',
         'fonts.googleapis.com',
     ];
-    // Domains that are globally considered as "safe"/known
     const KNOWN_DOMAINS = [
         'amazon.fr', 'amazon.com', 'google.com', 'google.fr', 'gstatic.com', 'facebook.com',
         'twitter.com', 'instagram.com', 'microsoft.com', 'apple.com', 'bing.com',
         'yahoo.com', 'cloudfront.net', 'cdn.jsdelivr.net', 'github.com', 'githubusercontent.com',
-        // Ajoute ici d'autres domaines connus si besoin
     ];
     const STATIC_EXTENSIONS = [
         '.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.ico',
@@ -74,6 +72,7 @@
             '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;', "'": '&#39;', '`': '&#96;'
         })[c]);
     }
+
     // ======= WIDGET =======
     const WIDGET_ID = 'cyber-hud-widget';
     let state = {
@@ -91,7 +90,7 @@
         widget.id = WIDGET_ID;
         widget.innerHTML = `
             <div id="cyber-hud-log" style="margin-bottom:8px;"></div>
-            <button id="cyber-hud-reanalyse" style="background:transparent;border:1px solid #fff;color:#fff;padding:2px 8px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:14px;transition:background .1s;">🔍 Re-analyser</button>
+            <button id="cyber-hud-reanalyse" style="background:transparent;border:1px solid #fff;color:#fff;padding:2px 8px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:14px;transition:background .1s;">🔍 Re-analyze</button>
         `;
         Object.assign(widget.style, {
             position: 'fixed',
@@ -113,11 +112,11 @@
         });
         document.body.appendChild(widget);
         document.getElementById('cyber-hud-reanalyse').onclick = runSecurityAnalysis;
-        document.getElementById('cyber-hud-reanalyse').onmouseenter = function() {
+        document.getElementById('cyber-hud-reanalyse').onmouseenter = function () {
             this.style.background = "#fff";
             this.style.color = "#101010";
         };
-        document.getElementById('cyber-hud-reanalyse').onmouseleave = function() {
+        document.getElementById('cyber-hud-reanalyse').onmouseleave = function () {
             this.style.background = "transparent";
             this.style.color = "#fff";
         };
@@ -128,17 +127,16 @@
         if (!log) return;
         log.innerHTML = `
             <div style="font-size:13px;opacity:0.7;">${new Date().toLocaleTimeString()}</div>
-            <div>Protocole: <b style="color:${state.httpAlert ? '#fff' : '#fff'};background:${state.httpAlert ? '#b30000' : '#222'};padding:0 5px;border-radius:3px;">${isHttpProtocol() ? 'HTTP ⚠️' : 'HTTPS'}</b></div>
-            <div>Champs password: <span>${state.passwordCount}</span></div>
-            <div>XSS détecté: <b style="color:${state.xssDetected ? '#b30000' : '#fff'};background:${state.xssDetected ? '#fff' : '#222'};padding:0 5px;border-radius:3px;">${state.xssDetected ? 'OUI ⚠️' : 'NON'}</b></div>
-            ${state.xssDetected ? `<div style="margin-left:12px;font-size:13px;">Champs: ${state.xssFields.map(f => `<code>${sanitizeHTML(f.name || f.id || '[unnamed]')}</code>`).join(', ')}</div>` : ''}
-            <div>Requêtes POTENTIELLEMENT suspectes: <b style="color:${state.unknownRequests.length ? '#b30000' : '#fff'};background:${state.unknownRequests.length ? '#fff' : '#222'};padding:0 5px;border-radius:3px;">${state.unknownRequests.length}</b></div>
+            <div>Protocol: <b style="color:${state.httpAlert ? '#fff' : '#fff'};background:${state.httpAlert ? '#b30000' : '#222'};padding:0 5px;border-radius:3px;">${isHttpProtocol() ? 'HTTP ⚠️' : 'HTTPS'}</b></div>
+            <div>Password fields: <span>${state.passwordCount}</span></div>
+            <div>XSS detected: <b style="color:${state.xssDetected ? '#b30000' : '#fff'};background:${state.xssDetected ? '#fff' : '#222'};padding:0 5px;border-radius:3px;">${state.xssDetected ? 'YES ⚠️' : 'NO'}</b></div>
+            ${state.xssDetected ? `<div style="margin-left:12px;font-size:13px;">Fields: ${state.xssFields.map(f => `<code>${sanitizeHTML(f.name || f.id || '[unnamed]')}</code>`).join(', ')}</div>` : ''}
+            <div>Potentially suspicious requests: <b style="color:${state.unknownRequests.length ? '#b30000' : '#fff'};background:${state.unknownRequests.length ? '#fff' : '#222'};padding:0 5px;border-radius:3px;">${state.unknownRequests.length}</b></div>
             ${state.unknownRequests.length ? `<div style="margin-left:12px;font-size:13px;">${state.unknownRequests.map(req => `<code>${sanitizeHTML(req)}</code>`).join('<br>')}</div>` : ''}
         `;
     }
 
-    // ======= ANALYSES =======
-
+    // ======= ANALYSIS =======
     function analyseProtocol() {
         state.httpAlert = isHttpProtocol();
     }
@@ -155,7 +153,6 @@
                 if (field.disabled || field.readOnly || field.offsetParent === null) return;
                 const oldValue = field.value;
                 field.value = payload;
-                // Ce test ne simule pas l’exécution réelle d’un XSS, il vérifie simplement si le champ accepte le payload. Pour une analyse pro, il faut un scanner plus avancé.
                 if (field.value === payload) {
                     state.xssDetected = true;
                     state.xssFields.push(field);
@@ -168,7 +165,7 @@
     function monitorRequests() {
         if (!window._cyberHudFetchPatched) {
             const origFetch = window.fetch;
-            window.fetch = function(...args) {
+            window.fetch = function (...args) {
                 const url = args[0];
                 if (
                     typeof url === 'string'
@@ -186,7 +183,7 @@
         }
         if (!window._cyberHudXhrPatched) {
             const origOpen = XMLHttpRequest.prototype.open;
-            XMLHttpRequest.prototype.open = function(method, url, ...rest) {
+            XMLHttpRequest.prototype.open = function (method, url, ...rest) {
                 if (
                     typeof url === 'string'
                     && !isDomainWhitelisted(url)
@@ -203,7 +200,7 @@
         }
     }
 
-    // ======= LANCEMENT DE L'ANALYSE =======
+    // ======= EXECUTION =======
     function runSecurityAnalysis() {
         analyseProtocol();
         analysePasswordFields();
@@ -211,7 +208,7 @@
         updateWidget();
     }
 
-    // ======= INITIALISATION =======
+    // ======= INITIALIZATION =======
     let debounceTimeout = null;
     function debounceAnalysis() {
         if (debounceTimeout) clearTimeout(debounceTimeout);
@@ -223,7 +220,7 @@
         monitorRequests();
         runSecurityAnalysis();
         const observer = new MutationObserver(debounceAnalysis);
-        observer.observe(document.body, {childList: true, subtree: true});
+        observer.observe(document.body, { childList: true, subtree: true });
     }
 
     if (document.readyState === "loading") {
