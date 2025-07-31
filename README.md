@@ -1,4 +1,4 @@
-# Cyber HUD Widget (Minimal Black & White Optimized V2)
+
 
 ![Cyber HUD Preview](https://i.ibb.co/cSJjg2nN/Sans-titre-1.png)
 
