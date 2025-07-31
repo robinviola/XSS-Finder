@@ -33,6 +33,12 @@ A Tampermonkey userscript that automatically analyzes the current web page's sec
 - No external libraries required
 - Fully client-side and safe to use on any website
 
+# 💡 Explanation
+
+![Cyber HUD Preview]([https://i.ibb.co/cSJjg2nN/Sans-titre-1.png](https://i.ibb.co/tM20Pj9w/XSS-1.png))
+![Cyber HUD Preview]([https://i.ibb.co/cSJjg2nN/Sans-titre-1.png](https://i.ibb.co/Zz810dFX/XSS-2.png))
+
+
 ## 👨‍💻 Author
 
 Created by [robinviola](https://github.com/robinviola)
