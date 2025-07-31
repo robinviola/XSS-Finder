@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Cyber HUD Widget (Black & White Minimal Optimized V3)
+// @name         XSS Finder
 // @namespace    https://github.com/votre-projet
 // @version      1.4.0
 // @description  Minimalist, ultra-reliable security widget for web pages – optimized to filter known domains and standard requests.
