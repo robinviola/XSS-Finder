@@ -35,8 +35,8 @@ A Tampermonkey userscript that automatically analyzes the current web page's sec
 
 # 💡 Explanation
 
-![Cyber HUD Preview](https://i.ibb.co/cSJjg2nN/Sans-titre-1.png)
-![Cyber HUD Preview](https://i.ibb.co/cSJjg2nN/Sans-titre-1.png)
+![Cyber HUD Preview](https://i.ibb.co/994x3K7m/XSS-1.png)
+![Cyber HUD Preview](https://i.ibb.co/Zz810dFX/XSS-2.png)
 
 
 ## 👨‍💻 Author
