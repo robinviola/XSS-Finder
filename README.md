@@ -1,63 +1,42 @@
-![Cyber HUD Widget Demo](https://i.ibb.co/cSJjg2nN/Sans-titre-1.png)
+# Cyber HUD Widget (Minimal Black & White Optimized V2)
 
-# 🛡️ Cyber HUD Widget - Tampermonkey Script
+![Cyber HUD Preview](https://i.ibb.co/cSJjg2nN/Sans-titre-1.png)
 
-**Cyber HUD Widget** est un userscript Tampermonkey conçu pour les passionnés de cybersécurité.  
-Il détecte automatiquement certaines vulnérabilités basiques sur les pages web que vous visitez.
-)
+## 🛡️ Overview
 
-**Cyber HUD Widget** est un userscript Tampermonkey conçu pour les passionnés de cybersécurité.  
-Il détecte automatiquement certaines vulnérabilités basiques sur les pages web que vous visitez.
+A Tampermonkey userscript that automatically analyzes the current web page's security features and displays a minimalist, real-time HUD on screen.
 
-> 🔍 Pensé comme un outil pédagogique ou de démonstration, ce script affiche une interface minimaliste pour visualiser ses analyses en temps réel.
+### ✅ What It Does:
 
----
+- Checks if the page is served over HTTP (insecure).
+- Detects the presence of password fields.
+- Simulates XSS injection in input fields (non-destructive test).
+- Monitors outgoing network requests and flags suspicious domains.
+- Provides a re-analysis button for dynamic pages.
 
-## ⚙️ Fonctionnalités principales
+## 📦 Installation
 
-- ✅ Vérification du **protocole HTTP/HTTPS**
-- 🚨 Mise en évidence des **champs mot de passe** sur des pages non sécurisées
-- 🧪 Injection automatique de **payloads XSS** dans les champs de formulaire
-- 📦 Détection de **formulaires de login suspects**
-- 🌐 Surveillance des **requêtes sortantes** vers des domaines inconnus
-- 🖥️ Mini interface intégrée sur la page visitée
+1. Install [Tampermonkey](https://www.tampermonkey.net/) in your browser.
+2. Create a new script and paste the contents of `cyber-hud-widget.js` into it.
+3. Save and reload any web page to see the widget in action.
 
----
+## ✨ Features
 
-## 🔧 Installation
+- Clean, monochrome interface
+- Live reanalysis of the current DOM
+- Instant feedback on potential vulnerabilities
+- Zero dependencies
 
-1. Installe [Tampermonkey](https://www.tampermonkey.net/) sur ton navigateur.
-2. Clique sur “**Créer un nouveau script**”.
-3. Colle le contenu du fichier `cyber-hud-widget.user.js` dans l’éditeur.
-4. Enregistre et active le script.
+## 🔧 Tech Details
 
----
+- Written in plain JavaScript
+- No external libraries required
+- Fully client-side and safe to use on any website
 
-## 📸 Aperçu
+## 👨‍💻 Author
 
-![Demo](https://i.ibb.co/cSJjg2nN/Sans-titre-1.png)
-
----
-
-## 💡 À propos
-
-Ce projet a été conçu comme un exemple de script intelligent, modulaire et utile à inclure dans un portfolio de cybersécurité.  
-Il peut être présenté lors d'entretiens ou utilisé dans des démos pédagogiques.
+Created by [robinviola](https://github.com/robinviola)
 
 ---
 
-## ⚠️ Avertissement
-
-> Ce script n’a pas pour vocation d’être utilisé à des fins malveillantes.  
-Il ne scanne que les pages ouvertes localement par l’utilisateur et ne stocke aucune donnée.
-
----
-
-## 🧠 Auteur
-
-- 💻 Script conçu par [TonPseudoGitHub]  
-- 📅 Version : 1.0  
-- 🛠️ Licence : MIT
-
----
-
+**Note**: This widget is designed for educational and demonstration purposes.
