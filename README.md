@@ -1,6 +1,10 @@
+![Cyber HUD Widget Demo](https://i.ibb.co/cSJjg2nN/Sans-titre-1.png)
+
 # 🛡️ Cyber HUD Widget - Tampermonkey Script
 
-![Demo Screenshot](https://i.ibb.co/cSJjg2nN/Sans-titre-1.png)
+**Cyber HUD Widget** est un userscript Tampermonkey conçu pour les passionnés de cybersécurité.  
+Il détecte automatiquement certaines vulnérabilités basiques sur les pages web que vous visitez.
+)
 
 **Cyber HUD Widget** est un userscript Tampermonkey conçu pour les passionnés de cybersécurité.  
 Il détecte automatiquement certaines vulnérabilités basiques sur les pages web que vous visitez.
